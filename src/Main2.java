@@ -6,8 +6,9 @@ import java.util.Random;
 public class Main2 {
     public static void main(String[] args) {
         testEj5a();
-        testEj5b();
-        compareEj5();
+        //testEj5b();
+        //compareEj5();
+        testEj6();//works
     }
 
     public static void compareEj5(){
@@ -85,6 +86,37 @@ public class Main2 {
             System.out.println("");
         }
         */
+
+        double[][] coefficients1 = new double[4][4];
+        coefficients1[0][0]=1;
+        coefficients1[0][1]=4;
+        coefficients1[0][2]=2;
+        coefficients1[0][3]=3;
+        coefficients1[1][0]=3;
+        coefficients1[1][1]=4;
+        coefficients1[1][2]=1;
+        coefficients1[1][3]=7;
+        coefficients1[2][0]=0;
+        coefficients1[2][1]=2;
+        coefficients1[2][2]=3;
+        coefficients1[2][3]=4;
+        coefficients1[3][0]=0;
+        coefficients1[3][1]=0;
+        coefficients1[3][2]=1;
+        coefficients1[3][3]=3;
+
+        double[] independentTerms1 = new double[4];
+        independentTerms1[0]=1;
+        independentTerms1[1]=2;
+        independentTerms1[2]=3;
+        independentTerms1[2]=4;
+
+        double[] result2 = ej5.exercise5WithoutPivoteo(coefficients1,independentTerms1);
+
+        for (int i=0;i<result2.length;i++){
+            System.out.println(result2[i]);
+        }
+        System.out.println("");
     }
 
     public static void testEj5b(){
@@ -123,6 +155,43 @@ public class Main2 {
         }
         */
     }
+
+    public static void testEj6(){
+        Ej6 ej6 = new Ej6();
+
+        double[][] coefficients = new double[4][4];
+        coefficients[0][0]=1;
+        coefficients[0][1]=4;
+        coefficients[0][2]=2;
+        coefficients[0][3]=3;
+        coefficients[1][0]=3;
+        coefficients[1][1]=4;
+        coefficients[1][2]=1;
+        coefficients[1][3]=7;
+        coefficients[2][0]=0;
+        coefficients[2][1]=2;
+        coefficients[2][2]=3;
+        coefficients[2][3]=4;
+        coefficients[3][0]=0;
+        coefficients[3][1]=0;
+        coefficients[3][2]=1;
+        coefficients[3][3]=3;
+
+        double[] independentTerms = new double[4];
+        independentTerms[0]=1;
+        independentTerms[1]=2;
+        independentTerms[2]=3;
+        independentTerms[2]=4;
+
+        double[] result = ej6.exercise6(coefficients,independentTerms,new Calc());
+
+        for (int i=0;i<result.length;i++){
+            System.out.println(result[i]);
+        }
+        System.out.println("");
+    }
+
+
 
 }
 

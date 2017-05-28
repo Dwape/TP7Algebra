@@ -2,7 +2,7 @@
  * Created by Gianni on 5/28/2017.
  */
 public class Ej5 {
-    double[] exercise5WithoutPivoteo(double[][] coefficients, double[] independentTerms){
+    double[] exercise5WithoutPivoteo(double[][] coefficients, double[] independentTerms){//no usar calc
         int n = coefficients[0].length;
         if (n!=coefficients.length) throw new RuntimeException("Matrix is not squared");
 
@@ -25,7 +25,7 @@ public class Ej5 {
         return tp7.exercise1(coefficients, independentTerms);
     }
 
-    double[] exercise5PartialPivoteo(double[][] coefficients, double[] independentTerms){//check if result is correct
+    double[] exercise5PartialPivoteo(double[][] coefficients, double[] independentTerms){//no usar calc
         int n = coefficients[0].length;
         if (n!=coefficients.length) throw new RuntimeException("Matrix is not squared");
 
