@@ -24,9 +24,9 @@ public class TP7 implements TP4{
 
     public double[] exercise2(double[][] coefficients, double[] independentTerms){
         double[] solution = new double[independentTerms.length];
-        for (int i=coefficients.length-1; i>=0; i--){
+        for (int i=0; i<coefficients.length; i++){
             double result = 0;
-            for (int k=i+1; k<coefficients[0].length; k++){ //index is wrong //coefficients[0].length-1-i
+            for (int k=0; k<i; k++){ //index is wrong //coefficients[0].length-1-i
                 double product = calculator.multiplication(solution[k], coefficients[i][k]); //solution in k-i-1
                 result = calculator.sum(result, product);
             }
