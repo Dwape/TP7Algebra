@@ -56,7 +56,59 @@ public class TP7 implements TP4{
         return new double[1][1];
     }
 
-    public double[] exercise9(double[][] coefficients, double[] independentTerms){
-        return new double[1];
+    public double[] exercise9(double[][] coefficients, double[] independentTerms){ //square matrix
+        double[][] L = new double[coefficients.length][coefficients[0].length];
+        double[][] U = new double[coefficients.length][coefficients[0].length];
+        for (int i=0; i<coefficients.length; i++){ //fills diagonal with ones.
+            L[i][i] = 1;
+        }
+        for (int i=0; i<coefficients.length; i++){
+            for (int j=i; j<coefficients[0].length; j++){
+                double result = 0;
+                for (int k=0; k<i; k++){
+                    double product = calculator.multiplication(L[i][k], U[k][j]);
+                    result = calculator.sum(result, product);
+                }
+                U[i][j] = calculator.subtraction(coefficients[i][j], result);
+            }
+            for (int j=i+1; j<coefficients.length; j++){
+                double result = 0;
+                for (int k=0; k<i; k++){
+                    double product = calculator.multiplication(L[j][k], U[k][i]);
+                    result = calculator.sum(result, product);
+                }
+                double partialResult = calculator.subtraction(coefficients[j][i], result);
+                L[j][i] = calculator.division(partialResult, U[i][i]);
+            }
+        }
+        double[] z = solveLowerMatrix(L, independentTerms);
+        return solveUpperMatrix(U, z);
+    }
+
+    public double[] solveUpperMatrix(double[][] coefficients, double[] independentTerms){
+        double[] solution = new double[independentTerms.length];
+        for (int i=coefficients.length-1; i>=0; i--){
+            double result = 0;
+            for (int k=i; k<coefficients[0].length; k++){
+                double product = calculator.multiplication(solution[k], coefficients[i][k]);
+                result = calculator.sum(result, product);
+            }
+            double partialResult = calculator.subtraction(independentTerms[i], result);
+            solution[i] = calculator.division(partialResult, coefficients[i][i]);
+        }
+        return solution;
+    }
+
+    public double[] solveLowerMatrix(double[][] coefficients, double[] independentTerms){
+        double[] solution = new double[independentTerms.length];
+        for (int i=0; i<coefficients.length; i++){
+            double result = 0;
+            for (int k=0; k<i; k++){
+                double product = calculator.multiplication(solution[k], coefficients[i][k]);
+                result = calculator.sum(result, product);
+            }
+            solution[i] = calculator.subtraction(independentTerms[i], result);
+        }
+        return solution;
     }
 }

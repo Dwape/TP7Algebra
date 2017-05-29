@@ -3,6 +3,6 @@
  */
 public class Ej6 {
     double[] exercise6(double[][] coefficients, double[] independentTerms, Calculator calculator){
-
+        return new double[0];
     }
 }
