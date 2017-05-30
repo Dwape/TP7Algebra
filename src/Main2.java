@@ -198,6 +198,7 @@ public class Main2 {
             System.out.println(result5[i]);
         }
         System.out.println("");
+
     }
 
     private static void testEj5b(){
