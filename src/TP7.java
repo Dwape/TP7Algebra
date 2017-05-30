@@ -53,7 +53,36 @@ public class TP7 implements TP4{
     }
 
     public double[][] exercise8(double[][] coefficients){
-        return new double[1][1];
+        double[][] enlargedMatrix = new double[coefficients.length][coefficients.length*2];
+        for (int i=0; i<coefficients.length; i++){
+            for (int j=0; j<coefficients[0].length; j++){
+                enlargedMatrix[i][j] = coefficients[i][j];
+            }
+        }
+        for (int i=0; i<coefficients.length; i++){
+            enlargedMatrix[i][i+coefficients.length] = 1;
+        }
+        for (int i=0; i<coefficients.length; i++){
+            double divisor = enlargedMatrix[i][i];
+            for (int j=0; j<coefficients[0].length+i+1; j++){ //check index to see if it works as expected.
+                enlargedMatrix[i][j] = enlargedMatrix[i][j]/divisor;
+            }
+            for (int j=0; j<coefficients.length; j++){ //j!=i
+                double multiplier = enlargedMatrix[j][i];
+                for (int k=0; k<enlargedMatrix[0].length; k++){
+                    if (j != i) {
+                        enlargedMatrix[j][k] = enlargedMatrix[j][k] - multiplier * enlargedMatrix[i][k];
+                    }
+                }
+            }
+        }
+        double[][] inverse = new double[coefficients.length][coefficients[0].length];
+        for (int i=0; i<inverse.length; i++){
+            for (int j=0; j<inverse[0].length; j++){
+                inverse[i][j] = enlargedMatrix[i][j+coefficients.length];
+            }
+        }
+        return inverse;
     }
 
     public double[] exercise9(double[][] coefficients, double[] independentTerms){ //square matrix
